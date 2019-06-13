@@ -34,9 +34,9 @@
                 <label th:for="${'song-artist'}">Artist</label>
                 <input th:id="${'song-artist'}" th:field="*{artist}"><br/>
                 <label th:for="${'song-songs'}">Songs</label>
-                <input th:id="${'song-songs'}" th:field="*{songCount}"><br/>
+                <input type="number" th:id="${'song-songs'}" th:field="*{songCount}"><br/>
                 <label th:for="${'song-duration'}">Duration</label>
-                <input th:id="${'song-duration'}" th:field="*{length}"><br/>
+                <input type="number" th:id="${'song-duration'}" th:field="*{length}"><br/>
                 <label th:for="${'song-duration'}">URL</label>
                 <input th:id="${'song-duration'}" th:field="*{imageUrl}"><br/>
                 <input type="submit" value="Create"/>
