@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/css/style.css" type="text/css" rel="stylesheet"/>
+    <title>Homepage</title>
+</head>
+<body>
+<main>
+    <section>
+        <select>
+            <option th:each ="album: ${albums}" th:text="${album.title}"></option>
+        </select>
+        <div th:each ="album : ${albums}">
+            <form>
+                <img th:src="${album.imageUrl}"/></br>
+                <label th:for="${'song-title'+album.id}">Title</label>
+                <input th:id="${'song-title'+album.id}" th:value="${album.title}"><br/>
+                <label th:for="${'song-artist'+album.id}">Artist</label>
+                <input th:id="${'song-artist'+album.id}" th:value="${album.artist}"><br/>
+                <label th:for="${'song-songs'+album.id}">Songs</label>
+                <input th:id="${'song-songs'+album.id}" th:value="${album.songCount}"><br/>
+                <label th:for="${'song-duration'+album.id}">Duration</label>
+                <input th:id="${'song-duration'+album.id}" th:value="${album.length}"><br/>
+                <label th:for="${'song-duration'+album.imageUrl}">URL</label>
+                <input th:id="${'song-duration'+album.imageUrl}" th:value="${album.imageUrl}"><br/>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
+</html>
