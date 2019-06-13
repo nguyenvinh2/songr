@@ -1,9 +1,11 @@
 package com.codefellows.vinh.songr.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Album {
+
     public int getId() {
         return id;
     }

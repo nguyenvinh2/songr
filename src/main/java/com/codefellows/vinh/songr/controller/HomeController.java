@@ -23,15 +23,28 @@ public class HomeController {
             albums.save(dylan);
             count++;
         }
-        Iterable<Album> songs = albums.findAll();
-        model.addAttribute("albums", songs);
-        model.addAttribute("object", new Album());
+        model.addAttribute("albums", albums.findAll());
+        model.addAttribute("album", Album.class);
         return "index";
     }
 
-    @RequestMapping(value="/", method= RequestMethod.POST)
-    public String create(@ModelAttribute("object") Album input) {
+    @RequestMapping(value="/create", method= RequestMethod.POST)
+    public String create(@RequestParam String id, @ModelAttribute() Album input) {
+        Album createAlbum = new Album(input.title, input.artist, input.songCount, input.length, input.imageUrl);
+        albums.save(createAlbum);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value="/edit", method= RequestMethod.POST)
+    public String edit(@RequestParam String id, @ModelAttribute() Album input) {
         albums.save(input);
+        return "redirect:/";
+    }
+
+
+    @RequestMapping(value="/delete", method= RequestMethod.POST)
+    public String delete(@RequestParam String id, @ModelAttribute() Album input) {
+        albums.delete(input);
         return "redirect:/";
     }
 

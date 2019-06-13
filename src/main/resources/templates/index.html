@@ -8,41 +8,36 @@
 <body>
 <main>
     <section>
-        <select>
-            <option th:each ="album: ${albums}" th:text="${album.title}"></option>
+        <select id="album-list" onchange="getItem()">
+            <option th:each="album: ${albums}" th:text="${album.title}" th:value="${album.id}"></option>
         </select>
-        <div th:each ="album : ${albums}">
-            <form>
-                <img th:src="${album.imageUrl}"/></br>
-                <label th:for="${'song-title'+album.id}">Title</label>
-                <input th:id="${'song-title'+album.id}" th:attr="value = ${album.title}"><br/>
-                <label th:for="${'song-artist'+album.id}">Artist</label>
-                <input th:id="${'song-artist'+album.id}" th:value="${album.artist}"><br/>
-                <label th:for="${'song-songs'+album.id}">Songs</label>
-                <input th:id="${'song-songs'+album.id}" th:value="${album.songCount}"><br/>
-                <label th:for="${'song-duration'+album.id}">Duration</label>
-                <input th:id="${'song-duration'+album.id}" th:value="${album.length}"><br/>
-                <label th:for="${'song-duration'+album.imageUrl}">URL</label>
-                <input th:id="${'song-duration'+album.imageUrl}" th:value="${album.imageUrl}"><br/>
-            </form>
-        </div>
         <div>
             <h2>Create New Album</h2>
-            <form action="#" th:action="@{/}" th:object="${object}" method="post">
-                <label th:for="${'song-title'}">Title</label>
-                <input th:id="${'song-title'}" th:field="*{title}"><br/>
-                <label th:for="${'song-artist'}">Artist</label>
-                <input th:id="${'song-artist'}" th:field="*{artist}"><br/>
-                <label th:for="${'song-songs'}">Songs</label>
-                <input type="number" th:id="${'song-songs'}" th:field="*{songCount}"><br/>
-                <label th:for="${'song-duration'}">Duration</label>
-                <input type="number" th:id="${'song-duration'}" th:field="*{length}"><br/>
-                <label th:for="${'song-duration'}">URL</label>
-                <input th:id="${'song-duration'}" th:field="*{imageUrl}"><br/>
-                <input type="submit" value="Create"/>
-            </form>
+            <div th:each="album: ${albums}">
+                <form class="album-forms" th:action="@{/create}" method="post">
+                    <input name="id" th:value="${album.id}" type="hidden"><br/>
+                    <img th:src="${album.imageUrl}"/></br>
+                    <label th:for="${'song-title-'+album.id}">Title</label>
+                    <input th:id="${'song-title-'+album.id}" name="title" th:value="${album.title}"><br/>
+                    <label th:for="${'song-artist'+album.id}">Artist</label>
+                    <input th:id="${'song-artist'+album.id}" name="artist" th:value="${album.artist}"><br/>
+                    <label th:for="${'song-songs'+album.id}">Songs</label>
+                    <input th:id="${'song-songs'+album.id}" name="songCount" th:value="${album.songCount}"
+                           type="number"><br/>
+                    <label th:for="${'song-duration'+album.id}">Duration</label>
+                    <input th:id="${'song-duration'+album.id}" name="length" th:value="${album.length}"
+                           type="number"><br/>
+                    <label th:for="${'song-duration'+album.id}">URL</label>
+                    <input th:id="${'song-duration'+album.id}" name="imageUrl" th:value="${album.imageUrl}"><br/>
+                    <input type="submit" value="Create"/>
+                    <input type="submit" th:formaction="@{/edit}" value="Edit">
+                    <input type="submit" th:formaction="@{/delete}" value="Delete">
+                </form>
+            </div>
         </div>
     </section>
 </main>
+<script src="/javascript/app.js"></script>
+<script>window.addEventListener("DOMContentLoaded", getItem(), false)</script>
 </body>
 </html>
