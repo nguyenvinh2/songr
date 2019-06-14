@@ -29,6 +29,7 @@
                            type="number"><br/>
                     <label th:for="${'song-duration'+album.id}">URL</label>
                     <input th:id="${'song-duration'+album.id}" name="imageUrl" th:value="${album.imageUrl}"><br/>
+                    <a th:href="${'/song/' + album.id}">See List of Songs</a>
                     <input type="submit" value="Create"/>
                     <input type="submit" th:formaction="@{/edit}" value="Edit">
                     <input type="submit" th:formaction="@{/delete}" value="Delete">
