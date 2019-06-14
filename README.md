@@ -16,7 +16,25 @@ The application contains three main routes with associated controllers:
                     Songs
                     Duration
                     Image
-
+        /song/{id} (GET)
+        
+            The / route will have links to each album with its associated songs.
+            The {id} is associated with the album id.
+            
+            The songs utilize a CRUD model:
+            
+            /song/{id}/add (POST)
+            
+            Adds a new song to the associated album
+            
+            /song/{id}/edit (POST)
+            
+            Edits the information about the song
+            
+            /song/{id}/delete
+            
+            Deletes the song from the album
+            
         /hello
         
             Returns "Hello World" in the web browser
@@ -57,6 +75,11 @@ The application contains three main routes with associated controllers:
     PSQL_USERNAME: username for Postgres
     PSQL_PASSWORD: postgres password
     
+    Note: using environment variables in IntelliJ will only work if the application
+    is started in IntelliJ
+    
+    Gradle commands will not be able see IntelliJ env variables so the variables must
+    directly be injected into the application.properties file.
     Upon running the application, the tables will be established.
         
         

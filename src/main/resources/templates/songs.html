@@ -16,11 +16,11 @@
             <label>Title: </label>
             <input name="title" th:value="${song.title}"/>
             <label>Track Number: </label>
-            <input type="number" name="trackNumber" th:value="${song.trackNumber}"/>
+            <input type="number" name="trackNumber" th:value="${song.trackNumber}" required/>
             <label>Length: </label>
-            <input type="number" name="length" th:value="${song.length}"/>
+            <input type="number" name="length" th:value="${song.length}" required/>
             <input type="submit" value="Update"/>
-            <input type="submit" th:action="${'/song/'+albumId+'/delete'}" value="Delete"/>
+            <input type="submit" th:formaction="${'/song/'+albumId+'/delete'}" value="Delete"/>
             <br/>
         </form>
     </div>
