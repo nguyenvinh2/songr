@@ -1,9 +1,13 @@
 package com.codefellows.vinh.songr.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="album")
 public class Album {
 
     public int getId() {
@@ -21,6 +25,18 @@ public class Album {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
+
+    @OneToMany(mappedBy="album", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    public List<Song> songs;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

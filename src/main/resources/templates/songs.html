@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/css/style.css" type="text/css" rel="stylesheet"/>
+    <title>Homepage</title>
+</head>
+<body>
+<main>
+    <div th:each="song: ${songs}">
+        <form th:action="${'/song/'+albumId+'/edit'}" method="post">
+            <input type="hidden" name="album_id" th:value="${albumId}"/>
+            <input type="hidden" name="id" th:value="${song.id}"/>
+            <label>Album: </label>
+            <input th:value="${song.album.title}"/>
+            <label>Title: </label>
+            <input name="title" th:value="${song.title}"/>
+            <label>Track Number: </label>
+            <input type="number" name="trackNumber" th:value="${song.trackNumber}" required/>
+            <label>Length: </label>
+            <input type="number" name="length" th:value="${song.length}" required/>
+            <input type="submit" value="Update"/>
+            <input type="submit" th:formaction="${'/song/'+albumId+'/delete'}" value="Delete"/>
+            <br/>
+        </form>
+    </div>
+    <h3>Add a new song!</h3>
+    <form th:action="${'/song/' + albumId + '/add'}" method="post">
+        <input type="hidden" name="album_id" th:value="${albumId}"/>
+        <input name="title" placeholder="Title" required/>
+        <input type="number" name="trackNumber" placeholder="Track Number" required/>
+        <input type="number" name="length" placeholder="Length" required/>
+        <input type="submit" value="Create"/>
+        <br/>
+    </form>
+</main>
+</body>
+</html>
